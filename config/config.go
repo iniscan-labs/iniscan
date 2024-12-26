@@ -15,6 +15,7 @@ type Config struct {
 	Server   config.Listen    `yaml:"server" json:"server"`
 	Logger   config.Logger    `yaml:"logger" json:"logger"`
 	Database *gormdb.Database `yaml:"database" json:"database"`
+	Node     *Node            `yaml:"node" json:"node"`
 }
 
 // Init init config

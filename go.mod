@@ -3,6 +3,8 @@ module github.com/iniscan-labs/iniscan
 go 1.23.2
 
 require (
+	github.com/bitly/go-simplejson v0.5.1
+	github.com/common-nighthawk/go-figure v0.0.0-20210622060536-734e95fb86be
 	github.com/gin-contrib/cors v1.7.2
 	github.com/gin-gonic/gin v1.10.0
 	github.com/mss-boot-io/mss-boot v0.2.8

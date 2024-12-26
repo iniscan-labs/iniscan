@@ -1,7 +1,17 @@
 package server
 
 import (
+	"context"
+	"fmt"
+	"log/slog"
+
+	"github.com/common-nighthawk/go-figure"
+	"github.com/gin-gonic/gin"
+	"github.com/mss-boot-io/mss-boot/core/server"
+	"github.com/mss-boot-io/mss-boot/core/server/listener"
 	"github.com/spf13/cobra"
+
+	"github.com/iniscan-labs/iniscan/config"
 )
 
 var (
@@ -20,9 +30,34 @@ var (
 )
 
 func setup() error {
+	slog.Info("setup server")
+
+	// 01 setup config
+	config.Cfg.Init()
+
+	// 02 setup gin
+	r := gin.Default()
+
+	// 03 setup runnable
+	runnable := []server.Runnable{
+		config.Cfg.Server.Init(
+			listener.WithStartedHook(tips),
+			listener.WithName("iniscan"),
+			listener.WithHandler(r),
+		),
+	}
+
+	// 04 add runnable
+	server.Manage.Add(runnable...)
 	return nil
 }
 
 func run() error {
-	return nil
+	ctx := context.Background()
+	return server.Manage.Start(ctx)
+}
+
+func tips() {
+	figure.NewFigure("iniscan", "rectangles", true).Print()
+	fmt.Println()
 }
