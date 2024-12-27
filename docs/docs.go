@@ -34,8 +34,6 @@ var SwaggerInfo = &swag.Spec{
 	Description:      "iniscan api document",
 	InfoInstanceName: "swagger",
 	SwaggerTemplate:  docTemplate,
-	LeftDelim:        "{{",
-	RightDelim:       "}}",
 }
 
 func init() {

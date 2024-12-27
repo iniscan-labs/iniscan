@@ -11,7 +11,9 @@ import (
 	"github.com/mss-boot-io/mss-boot/core/server/listener"
 	"github.com/spf13/cobra"
 
+	_ "github.com/iniscan-labs/iniscan/apis"
 	"github.com/iniscan-labs/iniscan/config"
+	"github.com/iniscan-labs/iniscan/router"
 )
 
 var (
@@ -49,6 +51,8 @@ func setup() error {
 
 	// 04 add runnable
 	server.Manage.Add(runnable...)
+
+	router.Init(r.Group("/explorer"))
 	return nil
 }
 
