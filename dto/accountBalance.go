@@ -4,12 +4,12 @@ import (
 	"github.com/mss-boot-io/mss-boot/pkg/response/actions"
 )
 
-type AccountBalanceSearch struct {
+type AccountSearch struct {
 	actions.Pagination `search:"inline"`
 	// address
-	Address string `query:"address" form:"address" search:"type:contains;column:address"`
+	Address string `json:"address" form:"address" search:"type:contains;column:address"`
 	// contract
-	Contract string `query:"contract" form:"contract" search:"type:contains;column:contract"`
+	Contract string `json:"contract" form:"contract" search:"type:contains;column:contract"`
 }
 
 type AccountSummaryResponse struct {

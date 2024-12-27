@@ -1,9 +1,52 @@
+definitions:
+  dto.AccountSearch:
+    properties:
+      address:
+        description: address
+        type: string
+      contract:
+        description: contract
+        type: string
+      current:
+        type: integer
+      pageSize:
+        type: integer
+    type: object
+  dto.AccountSummaryResponse:
+    properties:
+      balance:
+        type: string
+      count:
+        type: integer
+    type: object
 info:
   contact: {}
   description: iniscan api document
   title: iniscan API
   version: 0.0.1
-paths: {}
+paths:
+  /explorer/api/address/address_summary:
+    post:
+      consumes:
+      - application/json
+      description: account summary
+      parameters:
+      - description: data
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/dto.AccountSearch'
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.AccountSummaryResponse'
+      security:
+      - Bearer: []
+      summary: account summary
+      tags:
+      - account
 securityDefinitions:
   Bearer:
     in: header

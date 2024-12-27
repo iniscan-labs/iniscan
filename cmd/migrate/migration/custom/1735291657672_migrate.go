@@ -10,10 +10,10 @@ import (
 
 func init() {
 	_, fileName, _, _ := runtime.Caller(0)
-	migration.Migrate.SetVersion(migration.GetFilename(fileName), _1735266294177Migrate)
+	migration.Migrate.SetVersion(migration.GetFilename(fileName), _1735291657672Migrate)
 }
 
-func _1735266294177Migrate(db *gorm.DB, version string) error {
+func _1735291657672Migrate(db *gorm.DB, version string) error {
 	return db.Transaction(func(tx *gorm.DB) error {
 
 		// TODO: here to write the content to be changed
@@ -27,28 +27,17 @@ func _1735266294177Migrate(db *gorm.DB, version string) error {
 		// TODO: e.g. add table structure, please delete this code during use
 		err := tx.Migrator().AutoMigrate(
 			new(models.Account),
-			new(models.BalanceChange),
+			new(models.AccountBalance),
 			new(models.Block),
-			new(models.Cert),
-			new(models.Config),
 			new(models.Contract),
 			new(models.ContractVerifyJob),
 			new(models.EventInfo),
 			new(models.FunctionInfo),
 			new(models.InternalTransaction),
 			new(models.OrderSpentChange),
-			new(models.Provider),
-			new(models.ProviderReward),
-			new(models.Validator),
-			new(models.ValidatorReward),
-			new(models.VoteDetail),
-			new(models.Punish),
-			new(models.TokenListMaintain),
-			new(models.TokenListStat),
-			new(models.TokenPriceHistory),
 			new(models.TokenTransfer),
+			new(models.Transaction),
 			new(models.TransactionLogs),
-			new(models.UbicOrders),
 		)
 		if err != nil {
 			return err

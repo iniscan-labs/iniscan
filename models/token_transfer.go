@@ -4,7 +4,7 @@ import "github.com/mss-boot-io/mss-boot/pkg/response/actions"
 
 type TokenTransfer struct {
 	actions.ModelGorm
-	TransactionHash string `json:"transaction_hash" gorm:"size:80"`
+	TransactionHash string `json:"transaction_hash" gorm:"size:80;index"`
 	LogIndex        int64  `json:"log_index"`
 	Contract        string `json:"contract" gorm:"size:80;index"`
 	TokenType       int64  `json:"token_type" gorm:"index;comment:'1:erc20 2:erc721 3: erc1155'"`

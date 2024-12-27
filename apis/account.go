@@ -16,7 +16,7 @@ func init() {
 		Simple: controller.NewSimple(
 			controller.WithAuth(true),
 			controller.WithModel(new(models.Account)),
-			controller.WithSearch(new(dto.AccountBalanceSearch)),
+			controller.WithSearch(new(dto.AccountSearch)),
 			controller.WithModelProvider(actions.ModelProviderGorm),
 		),
 	}
@@ -37,14 +37,13 @@ func (e *Account) Other(r *gin.RouterGroup) {
 // @Tags account
 // @Accept  application/json
 // @Product application/json
-// @param address path string true "address"
-// @param contract path string true "contract"
+// @param data body dto.AccountSearch true "data"
 // @Success 200 {object} dto.AccountSummaryResponse
-// @Router /api/address/address_summary [post]
+// @Router /explorer/api/address/address_summary [post]
 // @Security Bearer
 func (e *Account) AddressSummary(ctx *gin.Context) {
 	api := response.Make(ctx)
-	req := &dto.AccountBalanceSearch{}
+	req := &dto.AccountSearch{}
 	if api.Bind(req).Error != nil {
 		api.Err(http.StatusUnprocessableEntity)
 		return

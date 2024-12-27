@@ -13,6 +13,7 @@ import (
 
 	_ "github.com/iniscan-labs/iniscan/apis"
 	"github.com/iniscan-labs/iniscan/config"
+	_ "github.com/iniscan-labs/iniscan/docs"
 	"github.com/iniscan-labs/iniscan/router"
 )
 

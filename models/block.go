@@ -8,7 +8,6 @@ type Block struct {
 	BlockNumber              int64   `json:"block_number" gorm:"index"`
 	TransactionCount         int64   `json:"transaction_count"`
 	InternalTransactionCount int64   `json:"internal_transaction_count"`
-	Validator                string  `json:"validator" gorm:"size:80"`
 	BlockReward              float64 `json:"block_reward" gorm:"type:numeric(80,0)"`
 	Difficult                int64   `json:"difficult"`
 	TotalDifficult           int64   `json:"total_difficult"`
@@ -21,10 +20,7 @@ type Block struct {
 	Nonce                    string  `json:"nonce" gorm:"size:80"`
 	Uncles                   string  `json:"uncles"`
 	BlockTime                int64   `json:"block_time"`
-	Provider                 string  `json:"provider" gorm:"size:80"`
-	Team                     string  `json:"team" gorm:"size:80"`
-	ValidatorRate            int64   `json:"validator_rate"`
-	TeamRate                 int64   `json:"team_rate"`
+	Miner                    string  `json:"miner" gorm:"size:80"`
 }
 
 func (Block) TableName() string {
